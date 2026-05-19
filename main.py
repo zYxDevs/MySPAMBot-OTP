@@ -1,13 +1,13 @@
 import sys          # Untuk fungsi pada terminal, seperti autoketik() dan exit()
 import subprocess   # Installing python module within code / script (Tanpa requirements.txt)
 import os           # Untuk "clear" terminal
+import time     # Untuk informasi waktu
+import random   # Untuk random user
+import json     # Agar body requests dapat dilihat dengan cara di print
 
 try: # Import Module
     import requests # Post, Get, & Put URL API
-    import time     # Untuk informasi waktu
-    import random   # Untuk random user
     import urllib3  # HTTP client untuk Python
-    import json     # Agar body requests dapat dilihat dengan cara di print
     import bs4      # Untuk variasi output
 except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "install", 'requests'])

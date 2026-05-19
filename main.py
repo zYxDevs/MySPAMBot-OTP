@@ -1,11 +1,11 @@
 import sys          # Untuk fungsi pada terminal, seperti autoketik() dan exit()
 import subprocess   # Installing python module within code / script (Tanpa requirements.txt)
+import os           # Untuk "clear" terminal
 
 try: # Import Module
     import requests # Post, Get, & Put URL API
     import time     # Untuk informasi waktu
     import random   # Untuk random user
-    import os       # Untuk "clear" terminal
     import urllib3  # HTTP client untuk Python
     import json     # Agar body requests dapat dilihat dengan cara di print
     import bs4      # Untuk variasi output
@@ -96,7 +96,7 @@ def tanya(nomor):
             break
         else:
             print ("Masukkan Pilihan Dengan Benar")
-            sys.exit
+            sys.exit() 
 
 def jam(nomor): # Don't Remove Code !!!!
         autoketik("Program Berjalan!")
@@ -278,31 +278,37 @@ def jam(nomor): # Don't Remove Code !!!!
             except requests.exceptions.ConnectionError:
                 print("")
                 autoketik("--Fail to establish a new connection--")
-                time.sleep(1000) # Tunda 1000 detik
+                time.sleep(100) # Tunda 1000 detik
                 rto = 1
 
             #https://urllib3.readthedocs.io/en/stable/reference/urllib3.exceptions.html
             except urllib3.exceptions.NewConnectionError: # Error Handling 2 ketika masih terjadi error berlebihan
                 print("")
                 autoketik("--Fail to establish a new connection--")
-                time.sleep(1000) # Tunda 1000 detik
+                time.sleep(100) # Tunda 1000 detik
                 rto = 1
 
             except TimeoutError : # HTTPSConnectionPool() A Connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
                 print("")
                 autoketik("--A Connection attempt failed because the connected party did not properly respond after a period of time--")
-                time.sleep(1000) # Tunda 1000 detik
+                time.sleep(100) # Tunda 1000 detik
                 rto = 1
 
             except urllib3.exceptions.ProtocolError : # HTTPSConnectionPool() A Connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
                 print("")
                 autoketik("--A Connection attempt failed because the connected party did not properly respond after a period of time--")
-                time.sleep(1000) # Tunda 1000 detik
+                time.sleep(100) # Tunda 1000 detik
                 rto = 1
 
             except KeyboardInterrupt: # Error Handling Ketika user menekan tombol CTRL + C atau Interrupt Terminal
                 print("")
                 tanya(nomor)
+
+            except Exception:
+                print("")
+                autoketik("--A Connection attempt failed--") 
+                time.sleep(100) 
+                rto = 1
         if rto==1:
             time.sleep(80) # Jika sudah error RTO maka tunda dulu proses selama 80 detik
             start(nomor,1)
@@ -312,19 +318,19 @@ def jam(nomor): # Don't Remove Code !!!!
 
 def start(nomor,x): # Def Untuk Start Tools
     if x == 0: # Flag ketika pertama kali masuk kedalam Fungsi start()
-        os.system("cls") # Clear Terminal
+        os.system("clear") # Clear Terminal
         autoketik(f"{merah}Infinite Loop Spam to {putih}{nomor} {merah}is {hijau}Ready!{hijau}") # Flag dimana program berjalan
         jam(nomor)
     else:
         print("")
         autoketik("--reboot wait 20 second--")
         time.sleep(15) # Tunda 20 detik
-        os.system("cls") # Clear Terminal
+        os.system("clear") # Clear Terminal
         autoketik(f"{merah}Mengulang Spam ke Nomor : {nomor}.....{hijau}") # Flag dimana program berjalan
         jam(nomor)
         
 def main():
-    os.system("cls") # Clear Terminal agar CMD berwarna
+    os.system("clear") # Clear Terminal agar CMD berwarna
     autoketik(f"Selamat datang di {merah}MySpamBot")
     print(f"""{kuning}Author      : {hijau}Ricky Khairul Faza
 {kuning}Github      : {merah}github.com/rickyfazaa
